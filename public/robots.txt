@@ -6,8 +6,4 @@ User-agent: Googlebot
 Allow: /
 Disallow: /api/
 
-User-agent: Bingbot
-Allow: /
-Disallow: /api/
-
 Sitemap: https://grid-ai.app/sitemap.xml
