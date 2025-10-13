@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sentient-grid-roma-giewt0k3z-li13203140613gmailcoms-projects.vercel.app',
+    url: 'https://grid-ai.app',
     title: 'Sentient GRID & ROMA | Minsky Awards 2024 Winner',
     description: 'ROMA (Recursive Open Meta-Agents) - Award-winning multi-agent AI framework achieving 81.7% on FRAMES, outperforming Gemini-2.5-Pro by 4x',
     siteName: 'Sentient GRID & ROMA',
@@ -70,6 +70,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-W7KT31DS7R"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-W7KT31DS7R');
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://sentient-grid-roma-giewt0k3z-li13203140613gmailcoms-projects.vercel.app'
+  const baseUrl = 'https://grid-ai.app'
 
   return {
     rules: [
