@@ -1,0 +1,195 @@
+{
+  "shortcut_version": "1.0",
+  "name": "NFC分享到小红书",
+  "description": "一触即分享：自动复制文案、下载图片、打开小红书",
+  "icon": {
+    "glyph": "📱",
+    "color": "red"
+  },
+  "configurations": {
+    "default": {
+      "id": "default",
+      "name": "Sentient Labs完整介绍",
+      "api_url": "https://www.grid-ai.app/api/nfc-content/default"
+    },
+    "grid": {
+      "id": "grid",
+      "name": "GRID去中心化AI网络",
+      "api_url": "https://www.grid-ai.app/api/nfc-content/grid"
+    },
+    "roma": {
+      "id": "roma",
+      "name": "ROMA多智能体框架",
+      "api_url": "https://www.grid-ai.app/api/nfc-content/roma"
+    }
+  },
+  "shortcuts_actions": [
+    {
+      "step": 1,
+      "type": "获取URL内容",
+      "description": "从API获取分享内容",
+      "parameters": {
+        "url": "https://www.grid-ai.app/api/nfc-content/default",
+        "method": "GET"
+      }
+    },
+    {
+      "step": 2,
+      "type": "从输入获取字典值",
+      "description": "提取文案内容",
+      "parameters": {
+        "key": "text"
+      }
+    },
+    {
+      "step": 3,
+      "type": "拷贝到剪贴板",
+      "description": "复制文案到剪贴板",
+      "parameters": {
+        "content": "字典值"
+      }
+    },
+    {
+      "step": 4,
+      "type": "显示通知",
+      "description": "提示文案已复制",
+      "parameters": {
+        "title": "✅ 文案已复制",
+        "body": "正在准备图片..."
+      }
+    },
+    {
+      "step": 5,
+      "type": "从输入获取字典值",
+      "description": "提取图片URL列表",
+      "parameters": {
+        "key": "images",
+        "source": "第1步的输出"
+      }
+    },
+    {
+      "step": 6,
+      "type": "重复每一项",
+      "description": "遍历每张图片",
+      "parameters": {
+        "items": "字典值"
+      },
+      "sub_actions": [
+        {
+          "step": "6.1",
+          "type": "获取URL内容",
+          "parameters": {
+            "url": "重复项目"
+          }
+        },
+        {
+          "step": "6.2",
+          "type": "存储到相册",
+          "parameters": {
+            "content": "URL内容"
+          }
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "type": "等待",
+      "description": "等待图片保存完成",
+      "parameters": {
+        "duration": 1
+      }
+    },
+    {
+      "step": 8,
+      "type": "显示通知",
+      "description": "提示准备完成",
+      "parameters": {
+        "title": "🎉 准备完成！",
+        "body": "图片已保存，正在打开小红书..."
+      }
+    },
+    {
+      "step": 9,
+      "type": "等待",
+      "parameters": {
+        "duration": 1
+      }
+    },
+    {
+      "step": 10,
+      "type": "打开URL",
+      "description": "打开小红书App",
+      "parameters": {
+        "url": "xhsdiscover://"
+      }
+    },
+    {
+      "step": 11,
+      "type": "等待",
+      "parameters": {
+        "duration": 2
+      }
+    },
+    {
+      "step": 12,
+      "type": "显示通知",
+      "description": "最终提示",
+      "parameters": {
+        "title": "✨ 全部完成！",
+        "body": "在小红书中选择刚保存的图片，粘贴文案，点击发布即可！"
+      }
+    }
+  ],
+  "xiaohongshu_schemes": {
+    "open_app": "xhsdiscover://",
+    "alternatives": [
+      "xhs://",
+      "https://www.xiaohongshu.com/explore"
+    ],
+    "note": "小红书没有公开支持内容预填充的URL Scheme"
+  },
+  "usage_instructions": {
+    "setup": [
+      "1. 打开iPhone快捷指令App",
+      "2. 点击右上角「+」创建新快捷指令",
+      "3. 按照shortcuts_actions中的步骤添加操作",
+      "4. 保存快捷指令",
+      "5. 创建NFC自动化，触发器选择该快捷指令"
+    ],
+    "daily_use": [
+      "1. 靠近NFC标签（1秒）",
+      "2. 自动执行流程（3-5秒）",
+      "3. 在小红书中粘贴并发布（5秒）",
+      "总计：约10秒！"
+    ]
+  },
+  "tips": {
+    "clipboard": "首次使用时需要允许访问剪贴板",
+    "photos": "首次使用时需要允许访问相册",
+    "notifications": "建议打开通知以获得流程提示",
+    "automation": "关闭「运行前询问」可以实现真正的一触即用",
+    "network": "确保网络连接稳定，以便下载图片"
+  },
+  "troubleshooting": {
+    "clipboard_failed": {
+      "problem": "文案没有复制",
+      "solution": "检查快捷指令权限 > 允许访问剪贴板"
+    },
+    "images_failed": {
+      "problem": "图片下载失败",
+      "solution": [
+        "检查网络连接",
+        "检查相册权限",
+        "确认图片URL可访问"
+      ]
+    },
+    "xiaohongshu_not_open": {
+      "problem": "小红书没有打开",
+      "solution": [
+        "确认已安装小红书App",
+        "尝试手动打开小红书",
+        "检查URL Scheme是否正确"
+      ]
+    }
+  }
+}

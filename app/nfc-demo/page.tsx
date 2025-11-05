@@ -49,6 +49,39 @@ export default function NFCDemoPage() {
           </div>
         </div>
 
+        {/* About Auto-Paste */}
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-6 mb-12">
+          <div className="flex items-start">
+            <div className="text-3xl mr-4">💡</div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                关于自动粘贴的说明
+              </h3>
+              <div className="space-y-2 text-gray-700">
+                <p>
+                  <strong className="text-green-700">✅ 可以实现：</strong>
+                  文案自动复制到剪贴板（打开页面时自动完成）
+                </p>
+                <p>
+                  <strong className="text-red-700">❌ 无法实现：</strong>
+                  自动粘贴到小红书App内（受iOS和小红书限制）
+                </p>
+                <p className="pt-2 border-t border-amber-200">
+                  <strong>原因：</strong>iOS系统出于安全考虑，不允许网页或其他App直接操作小红书App的内容。
+                  小红书也没有提供公开的API接收文案和图片。
+                </p>
+                <p className="text-sm text-amber-800 bg-amber-100 p-3 rounded-lg mt-3">
+                  💡 <strong>最佳体验：</strong>使用iOS快捷指令可以实现更流畅的自动化，
+                  包括自动下载图片到相册，但在小红书中仍需手动粘贴（长按输入框即可）。
+                  <Link href="/iOS_SHORTCUTS_GUIDE.md" className="underline ml-1" target="_blank">
+                    查看快捷指令设置教程 →
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Demo Links */}
         <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
